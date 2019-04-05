@@ -1,6 +1,6 @@
 package frc.team3388.robot;
 
-import edu.flash3388.flashlib.frc.robot.TimedFrcRobot;
+import com.flash3388.flashlib.frc.robot.TimedFrcRobot;
 
 public class Robot extends TimedFrcRobot {
 
