@@ -7,10 +7,6 @@ def ROBOT_MAIN_CLASS = "frc.team3388.robot.Main"
 
 repositories {
     mavenCentral()
-
-    maven {
-        url('https://oss.sonatype.org/content/repositories/snapshots')
-    }
 }
 
 // Define my targets (RoboRIO) and artifacts (deployable files)
@@ -46,7 +42,7 @@ dependencies {
     compile wpi.deps.wpilib()
     compile wpi.deps.vendor.java()
 
-    compile group: 'com.flash3388.flashlib', name: 'flashlib-frc', version: '2019.1.0-alpha-1-SNAPSHOT'
+    compile group: 'com.flash3388.flashlib', name: 'flashlib-frc', version: '2019.1.0-alpha.3'
 
     nativeZip wpi.deps.vendor.jni(wpi.platforms.roborio)
     nativeDesktopZip wpi.deps.vendor.jni(wpi.platforms.desktop)
