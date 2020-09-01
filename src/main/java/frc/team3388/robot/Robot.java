@@ -1,14 +1,13 @@
 package frc.team3388.robot;
 
-import com.flash3388.flashlib.frc.robot.IterativeRobotInterface;
-import com.flash3388.flashlib.robot.Robot;
+import com.flash3388.flashlib.frc.robot.FrcRobotControl;
+import com.flash3388.flashlib.frc.robot.base.iterative.IterativeFrcRobot;
+import com.flash3388.flashlib.robot.base.DelegatingRobotControl;
 
-public class IterativeRobot implements IterativeRobotInterface {
+public class Robot extends DelegatingRobotControl implements IterativeFrcRobot {
 
-    private final Robot mRobot;
-
-    public IterativeRobot(Robot robot) {
-        mRobot = robot;
+    public Robot(FrcRobotControl robotControl) {
+        super(robotControl);
     }
 
     @Override
@@ -18,6 +17,7 @@ public class IterativeRobot implements IterativeRobotInterface {
 
     @Override
     public void disabledPeriodic() {
+
     }
 
     @Override
@@ -27,14 +27,17 @@ public class IterativeRobot implements IterativeRobotInterface {
 
     @Override
     public void teleopPeriodic() {
+
     }
 
     @Override
     public void autonomousInit() {
+
     }
 
     @Override
     public void autonomousPeriodic() {
+
     }
 
     @Override
@@ -44,9 +47,16 @@ public class IterativeRobot implements IterativeRobotInterface {
 
     @Override
     public void testPeriodic() {
+
     }
 
     @Override
     public void robotPeriodic() {
+
+    }
+
+    @Override
+    public void robotStop() {
+
     }
 }

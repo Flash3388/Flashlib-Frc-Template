@@ -1,10 +1,11 @@
 package frc.team3388.robot;
 
-import edu.wpi.first.wpilibj.RobotBase;
+import com.flash3388.flashlib.frc.robot.RobotConfiguration;
+import com.flash3388.flashlib.frc.robot.RobotMain;
 
 public class Main {
 
     public static void main(String[] args) {
-        RobotBase.startRobot(frc.team3388.robot.RobotBase::new);
+        RobotMain.start(Robot::new, RobotConfiguration.defaultConfiguration());
     }
 }
