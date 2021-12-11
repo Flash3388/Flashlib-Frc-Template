@@ -1,6 +1,6 @@
 plugins {
     id "java"
-    id "edu.wpi.first.GradleRIO" version "2020.1.2"
+    id "edu.wpi.first.GradleRIO" version "2021.3.1"
 }
 
 def ROBOT_MAIN_CLASS = "frc.team3388.robot.Main"
@@ -49,8 +49,8 @@ repositories {
 // Defining my dependencies. In this case, WPILib (+ friends), and vendor libraries.
 // Also defines JUnit 4.
 dependencies {
-    implementation group: 'com.flash3388.flashlib', name: 'flashlib.frc.robot', version: '2021.1.0-alpha.1'
-    implementation group: 'com.flash3388.flashlib', name: 'flashlib.frc.nt', version: '2021.1.0-alpha.1'
+    implementation group: 'com.flash3388.flashlib', name: 'flashlib.frc.robot', version: '2021.2.0'
+    implementation group: 'com.flash3388.flashlib', name: 'flashlib.frc.nt', version: '2021.2.0'
 
     implementation wpi.deps.wpilib()
     nativeZip wpi.deps.wpilibJni(wpi.platforms.roborio)
