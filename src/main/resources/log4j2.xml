@@ -20,7 +20,7 @@
         <Logger name="FlashLib.Comm" level="error" additivity="false">
             <AppenderRef ref="DriverStation"/>
         </Logger>
-        <Root level="error">
+        <Root level="warn">
             <AppenderRef ref="DriverStation"/>
         </Root>
     </Loggers>
