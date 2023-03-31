@@ -6,7 +6,7 @@ plugins {
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
-def ROBOT_MAIN_CLASS = "frc.team3388.robot.Main"
+def ROBOT_MAIN_CLASS = "frc.robot.Main"
 
 // Define my targets (RoboRIO) and artifacts (deployable files)
 // This is added by GradleRIO's backing project DeployUtils.
@@ -46,10 +46,11 @@ wpi.java.debugJni = false
 dependencies {
     implementation group: 'com.flash3388.flashlib', name: 'flashlib.frc.robot', version: FLASHFRC_VERSION
     implementation group: 'com.flash3388.flashlib', name: 'flashlib.frc.nt', version: FLASHFRC_VERSION
+    implementation group: 'com.flash3388.flashlib', name: 'flashlib.frc.devices', version: FLASHFRC_VERSION
 
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.7'
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.7'
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.7'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: LOG4J_VERSION
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: LOG4J_VERSION
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: LOG4J_VERSION
 
     implementation wpi.java.deps.wpilib()
     implementation wpi.java.vendor.java()
@@ -87,9 +88,28 @@ wpi.sim.addDriverstation()
 // in order to make them all available at runtime. Also adding the manifest so WPILib
 // knows where to look for our Robot Class.
 jar {
-    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    doFirst {
+        def serviceDir = file("$buildDir/META-INF/services")
+        serviceDir.deleteDir()
+        serviceDir.mkdirs()
+
+        // copy all service files from deps to buildDir
+        for(file in configurations.runtimeClasspath) {
+            zipTree(file).matching{ include 'META-INF/services/*' }.each { f ->
+                new File(serviceDir, f.name) << f.getText("UTF-8") + "\n"
+            }
+        }
+    }
+
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } } {
+        exclude 'META-INF/**' // Don't let Gradle merge service files
+    }
+
     manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_MAIN_CLASS)
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
+
+    // Include service files from the buildDir.
+    from fileTree(buildDir).matching{ include 'META-INF/services/*' }
 }
 
 // Configure jar and deploy tasks
@@ -100,4 +120,9 @@ wpi.java.configureTestTasks(test)
 // Configure string concat to always inline compile
 tasks.withType(JavaCompile) {
     options.compilerArgs.add '-XDstringConcat=inline'
+}
+
+// configure some tasks with a debugger
+wpi.java.getSimulationTaskDebug().configure {
+    it.debug = true
 }

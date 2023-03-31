@@ -1,4 +1,4 @@
-package frc.team3388.robot;
+package frc.robot;
 
 import com.flash3388.flashlib.frc.robot.RobotConfiguration;
 import com.flash3388.flashlib.frc.robot.RobotMain;
