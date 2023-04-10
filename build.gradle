@@ -8,6 +8,10 @@ targetCompatibility = JavaVersion.VERSION_11
 
 def ROBOT_MAIN_CLASS = "frc.robot.Main"
 
+repositories {
+    mavenLocal()
+}
+
 // Define my targets (RoboRIO) and artifacts (deployable files)
 // This is added by GradleRIO's backing project DeployUtils.
 deploy {
@@ -102,7 +106,7 @@ jar {
     }
 
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } } {
-        exclude 'META-INF/**' // Don't let Gradle merge service files
+        exclude 'META-INF/services/*' // Don't let Gradle merge service files
     }
 
     manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_MAIN_CLASS)
