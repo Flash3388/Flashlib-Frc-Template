@@ -59,4 +59,9 @@ public class Robot extends DelegatingRobotControl implements IterativeFrcRobot {
     public void robotStop() {
 
     }
+
+    @Override
+    public void simulationPeriodic() {
+
+    }
 }
