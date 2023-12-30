@@ -1,10 +1,10 @@
 package frc.robot;
 
 import com.flash3388.flashlib.frc.robot.FrcRobotControl;
+import com.flash3388.flashlib.frc.robot.base.iterative.DelegatingFrcRobotControl;
 import com.flash3388.flashlib.frc.robot.base.iterative.IterativeFrcRobot;
-import com.flash3388.flashlib.robot.base.DelegatingRobotControl;
 
-public class Robot extends DelegatingRobotControl implements IterativeFrcRobot {
+public class Robot extends DelegatingFrcRobotControl implements IterativeFrcRobot {
 
     public Robot(FrcRobotControl robotControl) {
         super(robotControl);

@@ -8,7 +8,7 @@
         </DriverStation>
     </Appenders>
     <Loggers>
-        <Logger name="FlashLib" level="debug" additivity="false">
+        <Logger name="FlashLib" level="info" additivity="false">
             <AppenderRef ref="DriverStation"/>
         </Logger>
         <Logger name="FlashLib.Scheduler" level="info" additivity="false">
