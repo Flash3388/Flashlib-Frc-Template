@@ -4,3 +4,4 @@
 *.iml
 simgui*
 networktables.json
+/ctre_sim/
